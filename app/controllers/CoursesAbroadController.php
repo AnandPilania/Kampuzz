@@ -45,9 +45,9 @@ class CoursesAbroadController extends \BaseController {
     public function detail($country, $id)
     {
          $course = AbroadCourse::where('course_id', '=', $id)
-            ->with('eligibility')
-            ->with('university.campuses')
-            ->first()->toArray();
+                        ->with('eligibility')
+                        ->with('university.campuses')
+                        ->first()->toArray();
 
         return View::make('coursesabroad.detail', compact('course'));
     }

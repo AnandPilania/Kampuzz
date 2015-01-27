@@ -23,9 +23,41 @@ class CoursesController extends BaseController {
             $arr[] = $child_course['course_id'];
         }
 
-          $courseColleges = Course::whereIn('parent_course_id', $arr)
-            ->groupBy('college_id')
-            ->paginate(Config::get('view.results_per_page'));
+        // $specialization = Course::where('parent_course_id', '=',$course_name->course_id)->get()->toArray();
+        // echo "<pre>" ;
+        // print_r($specialization);
+        // exit();
+        $filter = Input::all();
+        // if(Input::has('submit_filters') && $filter['submit_filters'] == 'Filter') {
+            $select_cities = Input::has('location')? City::whereIn('city_group',$filter['location'])->lists('city_name') : [] ;
+            $fees = Input::has('fees') ? $filter['fees'] : null ;
+            $specialization = Input::has('specialization') ? $filter['specialization'] : null ;
+       // }
+
+        $query = Course::whereIn('courses.parent_course_id', $arr)
+                            ->join('college_master','college_master.college_id','=','courses.college_id') ;
+        
+        if($select_cities) {
+
+            // $query->where($select_cities,function($query){
+            
+            //     // // foreach($select_cities as $key=>$city ) {
+            //     // //     $query->orWhereLike('college_master.city_name',"%{$key}%") ;
+            //     // // }
+            //      }) ;
+        }
+
+        if($fees) {
+            $query->join('course_details','course_details.course_id','=','courses.course_id') ;
+            $query->where('course_details.total_fee','<=',$fees) ;
+        }
+
+        if($specialization) {
+           $query->where('courses.course_name','like',"%{$specialization}%") ;
+        }
+        
+        $courseColleges  =   $query->groupBy('courses.college_id')
+                            ->paginate(Config::get('view.results_per_page'));
 
         $i = 0;
         foreach ($courseColleges as $courseCollege)

@@ -139,7 +139,8 @@
             </div>
             <div class="widget widget_categories">
                 <header class="cs-heading-title"><h2 class="cs-section-title">Government Jobs</h2></header>
-                <ul>
+                 @include('includes.widget_article_cat')
+                <!-- <ul>
 
                     <li class="cat-item"><a href="articles.php?id=1">Recruitments</a></li>
                     <li class="cat-item"><a href="articles.php?id=56">Results</a></li>
@@ -153,7 +154,7 @@
                     <li class="cat-item"><a href="articles.php?id=8">State PSC</a></li>
                     <li class="cat-item"><a href="articles.php?id=11">Technical</a></li>
                     <li class="cat-item"><a href="articles.php?id=10">UPSC</a></li>
-                </ul>
+                </ul> -->
             </div>
 
             <div class="widget widget-recent-blog">
