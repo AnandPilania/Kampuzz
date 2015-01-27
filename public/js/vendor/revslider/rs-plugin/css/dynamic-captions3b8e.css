@@ -1,0 +1,84 @@
+.tp-caption.boxshadow {
+text-decoration:none;
+background-color:transparent;
+box-shadow:0 0 0 20px rgba(0, 0, 0, 0.5);
+border-width:0px;
+border-color:rgb(34, 34, 34);
+border-style:none;
+}
+
+.tp-caption.mercy-white {
+font-size:40px;
+line-height:38px;
+font-weight:500;
+font-family:Roboto;
+color:rgb(255, 255, 255);
+text-decoration:none;
+background-color:transparent;
+width:429px;
+border-width:0px;
+border-color:rgb(255, 255, 255);
+border-style:none;
+}
+
+.tp-caption.mercy-pera {
+font-size:14px;
+line-height:24px;
+font-family:Roboto;
+color:rgb(255, 255, 255);
+text-decoration:none;
+background-color:transparent;
+text-shadow:none;
+margin:0px;
+white-space:nowrap;
+border-width:0px;
+border-color:rgb(255, 255, 255);
+border-style:none;
+}
+
+.tp-caption.largeblackbg {
+font-size:18px;
+line-height:30px;
+font-weight:500;
+font-family:"Roboto",sans-serif;
+color:rgb(255, 255, 255);
+text-decoration:none;
+background-color:rgb(50, 50, 50);
+padding:14px 40px 18px;
+text-shadow:none;
+border-radius:2px 2px 2px 2px;
+border-width:0px;
+border-color:rgb(255, 255, 255);
+border-style:none;
+}
+
+.tp-caption.mercy-style {
+font-size:26px;
+line-height:55px;
+font-weight:600;
+font-family:Roboto;
+color:rgb(255, 255, 255);
+text-decoration:none;
+background-color:rgb(41, 104, 138);
+padding:0px 20px;
+text-shadow:none;
+border-width:0px;
+border-color:rgb(255, 255, 255);
+border-style:none;
+}
+
+.tp-caption.mercy-style-white {
+font-size:14px;
+line-height:55px;
+font-weight:600;
+font-family:Roboto;
+color:rgb(0, 0, 0);
+text-decoration:none;
+background-color:rgb(255, 255, 255);
+padding:0px 26px;
+text-shadow:none;
+border-width:0px;
+border-color:rgb(255, 255, 255);
+border-style:none;
+}
+

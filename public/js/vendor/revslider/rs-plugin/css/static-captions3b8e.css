@@ -1,0 +1,8 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:500,300,400,700);
+.tp-caption.roundedimage img {
+	-webkit-border-radius: 300px;
+    -moz-border-radius: 300px;
+    border-radius: 300px;
+    font-family: 'Roboto', sans-serif;
+    font-size:14px;
+}
