@@ -2,7 +2,11 @@
 <?php if ($course_name)
 {
     $breadcrumb_t = $course_name->course_name;
-} ?>
+
+    $specialization_filter = $course_name->hasSpecialization->toArray() ;
+} 
+   
+?>
 
 @section('content')
 

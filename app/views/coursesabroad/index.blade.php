@@ -3,6 +3,7 @@
 {
     $breadcrumb_t = $course_name->course_name;
     $breadcrumb_p = 'Study in ' . $country;
+    $specialization_filter = $course_name->hasSpecialization->toArray() ;
 } ?>
 
 @section('content')
@@ -78,6 +79,10 @@
     </div>
     <aside class="col-md-3">
 
+            @include('includes.widget_right_bar_course_abroad')
+
+            <!-- @include('includes.widget_abroad') -->
+           
     </aside>
 </div>
 @stop

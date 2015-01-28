@@ -11,6 +11,8 @@ class CoursesController extends BaseController {
     {
 
         $course_name = Course::where('course_id', '=', $id)->first();
+
+        
         if ((int)$parent_cat_id > 0)
         {
             $child_courses = Course::where('parent_course_id', '=', $parent_cat_id)->get()->toArray();
@@ -23,10 +25,7 @@ class CoursesController extends BaseController {
             $arr[] = $child_course['course_id'];
         }
 
-        // $specialization = Course::where('parent_course_id', '=',$course_name->course_id)->get()->toArray();
-        // echo "<pre>" ;
-        // print_r($specialization);
-        // exit();
+       
         $filter = Input::all();
         // if(Input::has('submit_filters') && $filter['submit_filters'] == 'Filter') {
             $select_cities = Input::has('location')? City::whereIn('city_group',$filter['location'])->lists('city_name') : [] ;
@@ -39,12 +38,13 @@ class CoursesController extends BaseController {
         
         if($select_cities) {
 
-            // $query->where($select_cities,function($query){
-            
-            //     // // foreach($select_cities as $key=>$city ) {
-            //     // //     $query->orWhereLike('college_master.city_name',"%{$key}%") ;
-            //     // // }
-            //      }) ;
+           $query =  $query->where(function($query){
+                $select_cities = Input::has('location')? City::whereIn('city_group',Input::get('location'))->lists('city_name') : [] ;
+
+                foreach($select_cities as $key=>$city ) {
+                   $query->orWhere('college_master.city_name','like',"%".$city."%") ;
+                }
+            }) ;
         }
 
         if($fees) {
@@ -60,6 +60,7 @@ class CoursesController extends BaseController {
                             ->paginate(Config::get('view.results_per_page'));
 
         $i = 0;
+        $collegeList = [] ;
         foreach ($courseColleges as $courseCollege)
         {
             $collegeList[$i]['course_id'] = isset($courseCollege->course_id) ? $courseCollege->course_id : NULL;
@@ -83,8 +84,8 @@ class CoursesController extends BaseController {
     }
 
 
-    public function detail($id, $slug = NULL)
-    {
+    public function detail($id, $slug = NULL) {
+
         $course = Course::where('course_id', '=', $id)->first();
 
         return View::make('courses.detail', compact('course'));

@@ -41,4 +41,10 @@ class General {
             return $html;
         }
     }
+
+
+    public function specialization() {
+
+        
+    }
 }

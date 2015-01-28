@@ -15,7 +15,10 @@ class AbroadCourse extends \Eloquent {
         return $this->BelongsTo('AbroadUniversity','univ_id');
     }
 
-
+    public function hasSpecialization()
+    {
+        return $this->morphMany('CourseSpecialization','course_entity');
+    }
 
 
 }

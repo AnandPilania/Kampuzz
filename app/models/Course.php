@@ -28,4 +28,9 @@ class Course extends \Eloquent {
     {
         return $this->belongsTo('College', 'college_id');
     }
+
+    public function hasSpecialization()
+    {
+        return $this->morphMany('CourseSpecialization', 'course_entity');
+    }
 }

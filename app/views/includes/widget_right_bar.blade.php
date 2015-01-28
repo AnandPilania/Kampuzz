@@ -5,6 +5,9 @@ $citylist = City::groupBy('city_group')->orderBy('k_city_id')->take(10)->skip(0)
 ?>
 	<div class="widget">
 		<div class="course_filters">
+			<header class="cs-heading-title">
+				<h2 class="cs-section-title">Filters</h2>
+			</header>
 			<form action="">
 			<h4>Location</h4>
 			<ul class="category_filter">
@@ -41,24 +44,26 @@ $citylist = City::groupBy('city_group')->orderBy('k_city_id')->take(10)->skip(0)
 				</li>
 			</ul>
 
+
 			<h4>Specialization</h4>
 			<ul class="type_filter">
 				<li>
-					<input id="all" type="radio" class="bp-course-free-filter" name="specialization" value="Computer Science"> 
-					<label for="all">Computer Science</label>
+					<input id="all" type="radio" class="bp-course-free-filter" name="specialization" value=""> 
+					<label for="all">Any</label>
 				</li>
+				<?php foreach($specialization_filter as $key=>$specialization) { ?>
+				
 				<li>
-					<input id="free" type="radio" class="bp-course-free-filter" name="specialization" value="Mechanical Engineering">
-					 <label for="free">Mechanical Engineering</label>
+					<input 	id="specialization_<?php echo $key ?>" 
+							type="radio" 
+							class="bp-course-free-filter" 
+							name="specialization" 
+							value="<?php echo $specialization['specialization_name'] ?>">
+					 <label for="specialization_<?php echo $key ?>" >
+					 	<?php echo $specialization['specialization_name'] ?>
+					 </label>
 				</li>
-				<li>
-					<input id="paid" type="radio" class="bp-course-free-filter" name="specialization" value="Electronics"> 
-					<label for="paid">Electronics</label>
-				</li>
-				<li>
-					<input id="paid" type="radio" class="bp-course-free-filter" name="specialization" value="Electrical Engineering"> 
-					<label for="paid">Electrical Engineering</label>
-				</li>
+				<?php } ?>
 			</ul>
 
 			<input type="submit" id="submit_filters" name="submit_filters" value="Filter" class="btn btn-info btn-btn-sm" />
