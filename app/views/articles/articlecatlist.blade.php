@@ -9,7 +9,7 @@
 	<?php foreach($catlist as $key=>$cat) {  ?>
 
   		<li class="cat-item">
-  			<a href="<?php echo Config::get('app.baseurl'); ?>articles/<?php echo $cat->cat_id ; ?>">
+  			<a href="<?php echo url('') ; ?>/articles/<?php echo $cat->cat_id ; ?>">
   				<?php echo $cat->cat_name  ?>
   			</a>
   		</li>

@@ -29,11 +29,11 @@
 <div class="text">
                         <div class="event-texttop">
                             <h2 class="cs-post-title">
-                                <a href="<?php echo Config::get('app.baseurl'); ?>article_details/<?php echo $article->article_id ?>" class="colrhvr"><?php echo $article->article_title ?></a>
+                                <a href="<?php echo url(''); ?>/article_details/<?php echo $article->article_id ?>" class="colrhvr"><?php echo $article->article_title ?></a>
                             </h2>
                                 <ul class="post-categories">
                                 	<?php if($article->article_intro) { ?>
-                                    <li><a href="<?php echo Config::get('app.baseurl'); ?>article_details/<?php echo $article->article_id ?>" rel="tag"><?php echo $article->article_intro ?></a></li>  
+                                    <li><a href="<?php echo url(''); ?>/article_details/<?php echo $article->article_id ?>" rel="tag"><?php echo $article->article_intro ?></a></li>  
                                     <?php } ?>
                                     <li><i class="fa fa-clock-o"></i><span><?php echo $article->article_publish_date ?></span></li> 
                                 </ul>

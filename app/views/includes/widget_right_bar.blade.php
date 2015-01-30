@@ -8,7 +8,7 @@ $citylist = City::groupBy('city_group')->orderBy('k_city_id')->take(10)->skip(0)
 			<header class="cs-heading-title">
 				<h2 class="cs-section-title">Filters</h2>
 			</header>
-			<form action="">
+			<form action="" id="form_filter">
 			<h4>Location</h4>
 			<ul class="category_filter">
 				<li>
@@ -69,5 +69,34 @@ $citylist = City::groupBy('city_group')->orderBy('k_city_id')->take(10)->skip(0)
 			<input type="submit" id="submit_filters" name="submit_filters" value="Filter" class="btn btn-info btn-btn-sm" />
 		    </form>
 		</div>
+		
+	<script> 
+
+		$("#form_filter").on('submit',function(e) {
+  			
+  			e.preventDefault();
+
+    		var form = $('#form_filter');
+    		var url = window.location.href ;  // the script where you handle the form input.
+
+    		// $('#loadingImage').show();
+    		// $(":submit").attr("disabled", true);
+
+   		 $.ajax({
+     			type: "GET",
+     			beforeSend: function(xhr){
+     						xhr.setRequestHeader('X-Requested-With','XMLHttpRequest');
+     					},
+     			url: url,
+           		data: form.serialize(), // serializes the form's elements.
+           		success: function(data) {
+                // Do stuff here
+               
+               $('#content_left').html(data) ;
+              },
+              error: function(){ console.log('fail') ;}
+            });
+  		});
+  	</script>
 	</div>
 

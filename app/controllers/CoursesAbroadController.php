@@ -63,7 +63,13 @@ class CoursesAbroadController extends \BaseController {
 
         $courses = $query->paginate(Config::get('view.results_per_page'));
 
-        return View::make('coursesabroad.index', compact('courses', 'course_name', 'country'));
+        $view = View::make('coursesabroad.index', compact('courses', 'course_name', 'country'));
+
+        if(Request::ajax()){
+            return $view->renderSections()['content_left'] ;
+        }
+
+        return $view ;
 
     }
 

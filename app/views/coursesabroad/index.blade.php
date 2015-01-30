@@ -8,7 +8,8 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-9 ">
+    <div  id="content_left" class="col-md-9 ">
+        @section('content_left')
         <div class="rich_editor_text"></div>
         <div class="element_size_100">
             <header class="cs-heading-title">
@@ -76,8 +77,10 @@
             </div>
             {{ $courses->links() }}
         </div>
+        @stop
+        @yield('content_left')
     </div>
-    <aside class="col-md-3">
+    <aside id="cotent_right" class="col-md-3">
 
             @include('includes.widget_right_bar_course_abroad')
 

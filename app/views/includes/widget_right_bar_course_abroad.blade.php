@@ -32,7 +32,7 @@
 			<header class="cs-heading-title">
 				<h2 class="cs-section-title">Filters</h2>
 			</header>
-			<form action="">
+			<form id="form_filter" action="">
 			<!-- <h4>Location</h4> -->
 			<!-- <ul class="category_filter">
 				<li>
@@ -98,7 +98,34 @@
 		    </form>
 		</div>
 
-		
+	<script> 
+
+		$("#form_filter").on('submit',function(e) {
+  			
+  			e.preventDefault();
+
+    		var form = $('#form_filter');
+    		var url = window.location.href ;  // the script where you handle the form input.
+
+    		// $('#loadingImage').show();
+    		// $(":submit").attr("disabled", true);
+
+   		 $.ajax({
+     			type: "GET",
+     			beforeSend: function(xhr){
+     						xhr.setRequestHeader('X-Requested-With','XMLHttpRequest');
+     					},
+     			url: url,
+           		data: form.serialize(), // serializes the form's elements.
+           		success: function(data) {
+                // Do stuff here
+               
+               $('#content_left').html(data) ;
+              },
+              error: function(){ console.log('fail') ;}
+            });
+  		});
+  	</script>
 	
 	</div>
 

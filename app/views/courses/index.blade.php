@@ -1,17 +1,23 @@
+
 @extends('layouts.main')
-<?php if ($course_name)
-{
-    $breadcrumb_t = $course_name->course_name;
 
-    $specialization_filter = $course_name->hasSpecialization->toArray() ;
-} 
-   
-?>
+<?php if ($course_name) {
+    
+            $breadcrumb_t = $course_name->course_name;
 
-@section('content')
+            $specialization_filter = $course_name->hasSpecialization->toArray() ;
+        }
+        ?> 
+
+
+  @section('content')
+
 
     <div class="row">
-        <div class="col-md-9 ">
+
+        <div id="content_left" class="col-md-9 ">
+           
+            @section('content_left')
             <div class="rich_editor_text"></div>
             <div class="element_size_100">
 
@@ -96,19 +102,16 @@
 
 
             </div>
+            @stop
+            @yield('content_left')
         </div>
-
-        <div class="col-md-3 col-sm-4">
-
-            
-
-             @include('includes.widget_right_bar')
-
-           
+        @unless (Request::ajax())   
+        <div id="contetn-right" class="col-md-3 col-sm-4">
+            @include('includes.widget_right_bar')
         </div>
+        @endunless
 
     </div>
     <!-- Row End -->
-
 
 @stop

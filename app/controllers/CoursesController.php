@@ -26,7 +26,7 @@ class CoursesController extends BaseController {
         }
 
        
-        $filter = Input::all();
+        $filter = Input::only('location','fees','specialization');
         // if(Input::has('submit_filters') && $filter['submit_filters'] == 'Filter') {
             $select_cities = Input::has('location')? City::whereIn('city_group',$filter['location'])->lists('city_name') : [] ;
             $fees = Input::has('fees') ? $filter['fees'] : null ;
@@ -80,14 +80,20 @@ class CoursesController extends BaseController {
             $i++;
         }
 
-        return View::make('courses.index', compact('courseColleges', 'collegeList', 'course_name'));
+        $view = View::make('courses.index', compact('courseColleges', 'collegeList', 'course_name'));
+        
+        if(Request::ajax()) {
+
+            return $view->renderSections()['content_left'] ;
+        }
+
+        return $view ;
     }
 
 
     public function detail($id, $slug = NULL) {
 
         $course = Course::where('course_id', '=', $id)->first();
-
         return View::make('courses.detail', compact('course'));
     }
 

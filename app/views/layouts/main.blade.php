@@ -19,7 +19,7 @@
     {{ HTML::style('js/vendor/mediaelement/mediaelementplayer.min.css') }}
     {{ HTML::style('js/vendor/mediaelement/wp-mediaelement.css') }}
     {{ HTML::style('css/responsive.css') }}
-    {{ HTML::script('js/vendor/jquery/jquery.js') }}
+    {{ HTML::script('js/vendor/jquery/jquery-2.0.3.min.js') }}
     {{ HTML::script('js/vendor/jquery/jquery-migrate.min.js') }}
     {{ HTML::script('js/vendor/revslider/rs-plugin/js/jquery.themepunch.plugins.min.js') }}
     {{ HTML::script('js/vendor/revslider/rs-plugin/js/jquery.themepunch.revolution.min.js') }}
@@ -285,4 +285,4 @@
 
 <!-- Google Analytics JS Goes here -->
 </body>
-</html><!-- Columns End -->
+</html>
