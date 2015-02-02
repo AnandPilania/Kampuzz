@@ -59,16 +59,16 @@
 					<label for="no_limit">No Limits</label>
 				</li>
 				<li>
-					<input id="fees_1" type="radio" class="bp-course-free-filter" onclick="filtercourses()" name="fees" value="100000"> 
-					<label for="fees_1">Maximum 1 Lakh</label>
+					<input id="fees_1" type="radio" class="bp-course-free-filter" onclick="filtercourses()" name="fees" value="5"> 
+					<label for="fees_1">Maximum 5 Lakh</label>
 				</li>
 				<li>
-					<input id="fees_2" type="radio" class="bp-course-free-filter" onclick="filtercourses()"  name="fees" value="200000">
-					 <label for="fees_2">Maximum 2 Lakh</label>
+					<input id="fees_2" type="radio" class="bp-course-free-filter" onclick="filtercourses()"  name="fees" value="10">
+					 <label for="fees_2">Maximum 10 Lakh</label>
 				</li>
 				<li>
-					<input id="fees_3" type="radio" class="bp-course-free-filter" onclick="filtercourses()" name="fees" value="500000"> 
-					<label for="fees_3">Maximum 5 Lakh</label>
+					<input id="fees_3" type="radio" class="bp-course-free-filter" onclick="filtercourses()" name="fees" value="20"> 
+					<label for="fees_3">Maximum 20 Lakh</label>
 				</li>
 			<!-- 	<li>
 					<input id="fees_4" type="radio" class="bp-course-free-filter" onclick="filtercourses()" name="fees" value="700000"> 
