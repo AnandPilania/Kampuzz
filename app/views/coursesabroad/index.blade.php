@@ -4,6 +4,7 @@
     $breadcrumb_t = $course_name->course_name;
     $breadcrumb_p = 'Study in ' . $country;
     $specialization_filter = $course_name->hasSpecialization->toArray() ;
+    $exam_filter = $course_name->hasExams->toArray() ;
 } ?>
 
 @section('content')

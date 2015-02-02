@@ -17,3 +17,6 @@ Route::get('abroad/course-detail/{country}/{id}-{slug?}',array('as'=>'courses.ab
 
 Route::get('articles/{id}',array('uses'=>'ArticleController@articles')) ;
 Route::get('article_details/{id}',array('uses'=>'ArticleController@articleDetails')) ;
+
+
+Route::get('getcities/{text?}',array('as'=>'citylist','uses'=>'FilterController@cities'));

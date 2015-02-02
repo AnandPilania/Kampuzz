@@ -26,11 +26,12 @@ class CoursesController extends BaseController {
         }
 
        
-        $filter = Input::only('location','fees','specialization');
+        $filter = Input::only('location','fees','specialization','exams');
         // if(Input::has('submit_filters') && $filter['submit_filters'] == 'Filter') {
-            $select_cities = Input::has('location')? City::whereIn('city_group',$filter['location'])->lists('city_name') : [] ;
+            $select_cities = Input::has('location')? Input::get('location') : [] ;
             $fees = Input::has('fees') ? $filter['fees'] : null ;
             $specialization = Input::has('specialization') ? $filter['specialization'] : null ;
+            $exams = Input::has('exams') ? $filter['exams'] : null ;
        // }
 
         $query = Course::whereIn('courses.parent_course_id', $arr)
@@ -39,7 +40,7 @@ class CoursesController extends BaseController {
         if($select_cities) {
 
            $query =  $query->where(function($query){
-                $select_cities = Input::has('location')? City::whereIn('city_group',Input::get('location'))->lists('city_name') : [] ;
+                $select_cities = Input::has('location')? Input::get('location') : [] ;
 
                 foreach($select_cities as $key=>$city ) {
                    $query->orWhere('college_master.city_name','like',"%".$city."%") ;
@@ -47,15 +48,35 @@ class CoursesController extends BaseController {
             }) ;
         }
 
-        if($fees) {
+        if($fees || $exams ) {
+
             $query->join('course_details','course_details.course_id','=','courses.course_id') ;
+            if($fees) {
             $query->where('course_details.total_fee','<=',$fees) ;
+            }
+            if($exams) {
+               $query =  $query->where(function($query){
+                $exams = Input::has('exams') ? Input::get('exams') : null ;
+                foreach($exams as $key=>$exam ) {
+                   $query->orWhere('course_details.exam_required','like',"%{$exam}%") ;
+                }
+            }) ; 
+            }
         }
 
+
         if($specialization) {
-           $query->where('courses.course_name','like',"%{$specialization}%") ;
+
+            $query =  $query->where(function($query){
+                $specializations = Input::has('specialization') ? Input::get('specialization') : null ;
+                foreach($specializations as $key=>$sp ) {
+                   $query->orWhere('courses.course_name','like',"%{$sp}%") ;
+                }
+            }) ;
         }
         
+        
+
         $courseColleges  =   $query->groupBy('courses.college_id')
                             ->paginate(Config::get('view.results_per_page'));
 

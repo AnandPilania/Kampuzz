@@ -28,9 +28,10 @@ class CoursesAbroadController extends \BaseController {
             $arr[] = $child_course['course_id'];
         }
 
-          //  $select_cities = Input::has('location')? City::whereIn('city_group',$filter['location'])->lists('city_name') : [] ;
+          // $select_cities = Input::has('location')? Input::get('location') : [] ;
             $fees = Input::has('fees') ? Input::get('fees') : null ;
             $specialization = Input::has('specialization') ? Input::get('specialization') : null ;
+            $exams = Input::has('exams') ? Input::get('exams') : null ;
 
 
         $query = AbroadCourse::with('eligibility')
@@ -57,8 +58,27 @@ class CoursesAbroadController extends \BaseController {
             $query->where('fees_lakh_inr','<=',$fees) ;
         }
 
-        if($specialization) {
-           $query->where('course_name','like',"%{$specialization}%") ;
+
+        if($exams) {
+             $query->join('abroad_course_eligibility','abroad_course_eligibility.course_id','=','abroad_courses.course_id') ;
+               $query =  $query->where(function($query){
+                $exams = Input::has('exams') ? Input::get('exams') : null ;
+                foreach($exams as $key=>$exam ) {
+                   $query->orWhere('abroad_course_eligibility.exam_name','like',"%{$exam}%") ;
+                }
+            }) ; 
+
+
+            }
+
+        
+         if($specialization) {
+            $query =  $query->where(function($query){
+                $specializations = Input::has('specialization') ? Input::get('specialization') : null ;
+                foreach($specializations as $key=>$sp ) {
+                   $query->orWhere('course_name','like',"%{$sp}%") ;
+                }
+            }) ;
         }
 
         $courses = $query->paginate(Config::get('view.results_per_page'));

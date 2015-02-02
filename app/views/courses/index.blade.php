@@ -6,6 +6,7 @@
             $breadcrumb_t = $course_name->course_name;
 
             $specialization_filter = $course_name->hasSpecialization->toArray() ;
+              $exam_filter = $course_name->hasExams->toArray() ;
         }
         ?> 
 

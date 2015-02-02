@@ -53,56 +53,95 @@
 			</ul> -->
 
 			<h4>Total Fees(INR)</h4>
-			<ul class="type_filter">
+			<ul id="fees_filter" class="type_filter">
 				<li>
-					<input id="fees_4" type="radio" class="bp-course-free-filter" name="fees" value=""> 
-					<label for="fees_4">Any</label>
+					<input id="no_limit" type="radio" class="bp-course-free-filter" onclick="filtercourses()" name="fees" value=""> 
+					<label for="no_limit">No Limits</label>
 				</li>
 				<li>
-					<input id="fees_1" type="radio" class="bp-course-free-filter" name="fees" value="10"> 
-					<label for="fees_1">Upto 10 Lakh</label>
+					<input id="fees_1" type="radio" class="bp-course-free-filter" onclick="filtercourses()" name="fees" value="100000"> 
+					<label for="fees_1">Maximum 1 Lakh</label>
 				</li>
 				<li>
-					<input id="fees_2" type="radio" class="bp-course-free-filter" name="fees" value="15">
-					 <label for="fees_2">Upto 15 Lakh</label>
+					<input id="fees_2" type="radio" class="bp-course-free-filter" onclick="filtercourses()"  name="fees" value="200000">
+					 <label for="fees_2">Maximum 2 Lakh</label>
 				</li>
 				<li>
-					<input id="fees_3" type="radio" class="bp-course-free-filter" name="fees" value="20"> 
-					<label for="fees_3">Upto 20 Lakh</label>
+					<input id="fees_3" type="radio" class="bp-course-free-filter" onclick="filtercourses()" name="fees" value="500000"> 
+					<label for="fees_3">Maximum 5 Lakh</label>
 				</li>
-				
+			<!-- 	<li>
+					<input id="fees_4" type="radio" class="bp-course-free-filter" onclick="filtercourses()" name="fees" value="700000"> 
+					<label for="fees_4">Maximum 7 Lakh</label>
+				</li>
+				<li>
+					<input id="fees_5" type="radio" class="bp-course-free-filter" onclick="filtercourses()" name="fees" value="1000000"> 
+					<label for="fees_5">Maximum 10 Lakh</label>
+				</li> -->
 			</ul>
 
-			<h4>Specialization</h4>
-			<ul class="type_filter">
-				<li>
-					<input id="specialization_any" type="radio" class="bp-course-free-filter" name="specialization" value=""> 
-					<label for="speicialization_any">Any</label>
-				</li>
-				<?php foreach($specialization_filter as $key=>$specialization) { ?>
+			<h4>Exams Required</h4>
+			<ul id="exams_filter" class="type_filter" style="max-height: 200px; overflow-y:scroll; ">
+				<!-- <li>
+					<input id="all" type="radio" class="bp-course-free-filter" name="exams" value=""> 
+					<label for="all">Any</label>
+				</li> -->
+				<?php foreach($exam_filter as $key=>$exam) { ?>
 				
 				<li>
-					<input 	id="specialization_<?php echo $key ?>" 
-							type="radio" 
+					<input 	id="exam_<?php echo $key ?>" 
+							type="checkbox" 
 							class="bp-course-free-filter" 
-							name="specialization" 
-							value="<?php echo $specialization['specialization_name'] ?>">
+							name="exams[]" 
+							onclick="filtercourses()"
+							value="<?php echo $exam['name'] ?>">
+
 					 <label for="specialization_<?php echo $key ?>" >
-					 	<?php echo trim($specialization['specialization_name']) ?>
+					 	<?php echo $exam['name'] ?>
 					 </label>
 				</li>
 				<?php } ?>
 			</ul>
 
-			<input type="submit" id="submit_filters" name="submit_filters" value="Filter" class="btn btn-info btn-btn-sm" />
+			<h4>Specialization</h4>
+			<ul id="specialization_filter" class="type_filter" style="max-height:200px;overflow-y:scroll; ">
+				<!-- <li>
+					<input id="all" type="radio" class="bp-course-free-filter" name="specialization" value=""> 
+					<label for="all">Any</label>
+				</li> -->
+				<?php foreach($specialization_filter as $key=>$specialization) { ?>
+				
+				<li>
+					<input 	id="specialization_<?php echo $key ?>" 
+							type="checkbox" 
+							class="bp-course-free-filter" 
+							name="specialization[]"
+							onclick="filtercourses()"
+							value="<?php echo $specialization['specialization_name'] ?>">
+					 <label for="specialization_<?php echo $key ?>" >
+					 	<?php echo $specialization['specialization_name'] ?>
+					 </label>
+				</li>
+				<?php } ?>
+			</ul>
+
+			<!-- <input type="submit" id="submit_filters" name="submit_filters" value="Filter" class="btn btn-info btn-btn-sm" /> -->
 		    </form>
 		</div>
 
 	<script> 
 
-		$("#form_filter").on('submit',function(e) {
-  			
+
+    		// $('#loadingImage').show();
+    		// $(":submit").attr("disabled", true);
+
+
+  		$("#form_filter").on('submit',function(e) {
   			e.preventDefault();
+  		}) ;
+  		function filtercourses(){
+
+  			
 
     		var form = $('#form_filter');
     		var url = window.location.href ;  // the script where you handle the form input.
@@ -124,7 +163,7 @@
               },
               error: function(){ console.log('fail') ;}
             });
-  		});
+   		}
   	</script>
 	
 	</div>
