@@ -129,6 +129,8 @@
 		    </form>
 		</div>
 
+			<div class="transparentCover"></div> <div class="loading"></div>
+
 	<script> 
 
 
@@ -146,8 +148,9 @@
     		var form = $('#form_filter');
     		var url = window.location.href ;  // the script where you handle the form input.
 
-    		// $('#loadingImage').show();
-    		// $(":submit").attr("disabled", true);
+    		
+    		$(".transparentCover").show();
+            $(".loading").show();
 
    		 $.ajax({
      			type: "GET",
@@ -160,6 +163,8 @@
                 // Do stuff here
                
                $('#content_left').html(data) ;
+               $(".transparentCover").hide();
+            	$(".loading").hide();
               },
               error: function(){ console.log('fail') ;}
             });

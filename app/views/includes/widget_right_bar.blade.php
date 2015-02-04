@@ -140,7 +140,8 @@ $citylist = City::orderBy('k_city_id')->get() ;
 			<!-- <input type="submit" id="submit_filters" name="submit_filters" value="Filter" class="btn btn-info btn-btn-sm" /> -->
 		    </form>
 		</div>
-		
+
+		<div class="transparentCover"></div> <div class="loading"></div>
 	<script> 
 
 		$("#form_filter").on('submit',function(e) {
@@ -148,7 +149,9 @@ $citylist = City::orderBy('k_city_id')->get() ;
   		}) ;
   		function filtercourses(){
 
-  			
+  			$(".transparentCover").show();
+            $(".loading").show();
+
 
     		var form = $('#form_filter');
     		var url = window.location.href ;  // the script where you handle the form input.
@@ -165,7 +168,8 @@ $citylist = City::orderBy('k_city_id')->get() ;
            		data: form.serialize(), // serializes the form's elements.
            		success: function(data) {
                 // Do stuff here
-               
+               $(".transparentCover").hide();
+            $(".loading").hide();
                $('#content_left').html(data) ;
               },
               error: function(){ console.log('fail') ;}
