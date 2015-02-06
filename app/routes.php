@@ -20,3 +20,18 @@ Route::get('article_details/{id}',array('uses'=>'ArticleController@articleDetail
 
 
 Route::get('getcities/{text?}',array('as'=>'citylist','uses'=>'FilterController@cities'));
+
+
+
+Route::get('login',array('as'=>'login','uses'=>'LoginController@login')) ;
+Route::post('authenticating',array('before'=>'csrf','as'=>'authentication','uses'=>'LoginController@authentication')) ;
+
+Route::get('register',array('as'=>'register','uses'=>'LoginController@register')) ;
+Route::post('creatingaccount',array('before'=>'csrf','as'=>'signingUp','uses'=>'LoginController@signingUp')) ;
+
+Route::get('fbsignup',array('as'=>'fbSignUp','uses'=>'LoginController@fbSignUp')) ;
+
+
+Route::get('profile',array('as'=>'profile','uses'=>'UserController@profile')) ;
+Route::get('logout',array('as'=>'logout','uses'=>'LoginController@logout')) ;
+

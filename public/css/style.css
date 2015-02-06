@@ -3601,7 +3601,7 @@ margin-right: -10px;
 
 
 
-
+/* ajax image loading css*/
 .transparentCover { 
 	display:none; 
 	position:fixed; 
@@ -3629,4 +3629,35 @@ margin-right: -10px;
 	text-align:center; 
 	background:url('../css/images/ajax-loader-large.gif') no-repeat center 50%; 
 	z-index:101; 
+}
+
+
+/* login */
+.socialLoginLinks {
+width: 320px;
+float: left;
+margin-top: 35px;
+}
+.btn-fb, .btn-fb:focus, .btn-fb:hover {
+background: url(../images/socialLoginButtonIcons.png) left top no-repeat #3c5a98;
+border: 0;
+font-size: 16px;
+height: 50px;
+color: #fff;
+}
+.btn-google, .btn-google:focus, .btn-google:hover {
+background: url(../images/socialLoginButtonIcons.png) left -70px no-repeat #dd4d3b;
+border: 0;
+font-size: 16px;
+height: 50px;
+color: #fff;
+}
+.btn-social, .btn-social:focus, .btn-social:hover {
+-webkit-border-radius: 0;
+-moz-border-radius: 0;
+border-radius: 0;
+padding: 0 0 0 65px;
+width: 100%;
+text-align: left;
+margin-bottom: 30px;
 }

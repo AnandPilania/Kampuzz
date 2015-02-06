@@ -32,8 +32,15 @@
     <header id="header" class="headermain fullwidth">
         <div id="loginheader" class="fullwidth" style="text-align: right;">
             <div class="container">
-                <i class="fa fa-lock"></i> <a href="#">Login</a> | <i class="fa fa-user"></i> <a href="#">Create
-                    Account</a> | <i class="fa fa-briefcase"></i> <a href="#">Institution Login</a></div>
+                    @if (Auth::check())
+                        <i class="fa fa-user"></i><a href="{{ route('profile') }}"> {{ Auth::user()->name }}</a> |
+                        <a href="{{ route('logout') }}"> Log Out</a>
+                        @else
+                        <i class="fa fa-lock"></i> <a href="{{ route('login') }}">Login</a> | 
+                        <i class="fa fa-user"></i> <a href="{{ route('register') }}">Create Account</a> | 
+                        <i class="fa fa-briefcase"></i> <a href="#">Institution Login</a>
+                    @endif
+            </div>
         </div>
         <!-- Main Header -->
 
@@ -74,6 +81,7 @@
                     <!-- Navigation  -->
 
                     <nav class="navigation float-right">
+
                         {{ ($menu); }}
 
                     </nav>
