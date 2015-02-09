@@ -20,8 +20,17 @@ class UserController extends BaseController {
 
 
 	public function saveProfile() {
-		
+
+		$data = Input::only('email','name','gender','mobile') ;
+
+		$user = User::find(Auth::user()->id);
+		$user->email = $data['email'] ;
+		$user->name = $data['name'] ;
+		$user->gender = $data['gender'] ;
+		$user->mobile = $data['mobile'] ;
+		if($user->save()) {
 		return Redirect::to(route('home')) ;
+		}
 	}
 
 
@@ -32,7 +41,23 @@ class UserController extends BaseController {
 
 	public function savePassword() {
 
-		return Redirect::to(route('home')) ;
+		$data = Input::only('cpassword','npassword','cnpassword') ;
+
+		$user = User::find(Auth::user()->id);
+		if(($user->password == Hash::make($data['cpassword'])) && $data['cpassword']) {
+
+			if($data['npassword'] == $data['cnpassword']) {
+				
+				$user->password = $data['npassword'] ;
+				if($user->save()) {
+					return Redirect::to(route('home')) ;
+				}
+
+				return Redirect::to(route('change-password'))->withInput()->with('message','New Password and Confirm Password Doesn\'t Match') ;
+			}	
+		}
+
+		return Redirect::to(route('change-password'))->withInput()->with('message','Current Password Is Incorrect') ;
 	}
 
 	public function createPassword() {

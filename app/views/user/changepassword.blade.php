@@ -12,28 +12,28 @@
 
 		        <div class="form-group col-md-6">
 		        	<div class="col-md-3" >
-		            {{Form::label('cpassowrd','Current Password')}}
+		            {{Form::label('cpassword','Current Password')}}
 		        	</div>
 		            <div class="col-md-9" >
-		            {{Form::password('cpaasowrd',array('class' => 'form-control'))}}
+		            {{Form::password('cpassword',array('class' => 'form-control'))}}
 		        	</div>
 		        </div>
 
 		         <div class="form-group col-md-6">
 		        	<div class="col-md-3" >
-		            {{Form::label('npassowrd','New Password')}}
+		            {{Form::label('npassword','New Password')}}
 		        	</div>
 		            <div class="col-md-9" >
-		            {{Form::password('npaasowrd',array('class' => 'form-control'))}}
+		            {{Form::password('npassword',array('class' => 'form-control'))}}
 		        	</div>
 		        </div>
 
 		        <div class="form-group col-md-6">
 		        	<div class="col-md-3" >
-		            {{Form::label('cnpassowrd','Confirm New Password')}}
+		            {{Form::label('cnpassword','Confirm New Password')}}
 		        	</div>
 		            <div class="col-md-9" >
-		            {{Form::password('cnpaasowrd',array('class' => 'form-control'))}}
+		            {{Form::password('cnpassword',array('class' => 'form-control'))}}
 		        	</div>
 		        </div>
 		        

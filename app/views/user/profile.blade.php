@@ -42,8 +42,16 @@
 		        	<div class="col-md-3" >
 		            {{Form::label('gender','Gender')}}
 		            </div>
-		            <div class="col-md-9" >
-		            {{Form::radio('gender','fghghf',array('class' => 'form-control','options'=>['Male'=>'Male','Female'=>'Female']))}}
+		             <div class="col-md-9" >
+		            @foreach (['Male'=>'Male','Female'=>'Female'] as $value=>$name)
+		           
+		            {{ $checked = false}}
+		            @if ($value==Auth::user()->gender)
+		            	{{ $checked = true }}
+		            @endif
+		            {{Form::radio('gender',$value,$checked,array('class' => ''))}} {{ $name }}
+		        	
+		        	@endforeach
 		        	</div>
 		        </div>
 		         <div class="form-group row">
