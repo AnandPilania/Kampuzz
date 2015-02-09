@@ -114,5 +114,43 @@
 
     </div>
     <!-- Row End -->
+    <script>
 
+
+
+    $(document).ready(function() {
+        $(document).on('click', '.pagination a', function (e) {
+            e.preventDefault();
+            $(".transparentCover").show();
+            $(".loading").show();
+            getFilteredList($(this).attr('href'),$(this).attr('href').split('page=')[1]); 
+            
+        });
+    });
+
+    function scrollToElement(ele) {
+             $(window).scrollTop(ele.offset().top).scrollLeft(ele.offset().left);
+    }
+
+    function getFilteredList(url,page) {
+        $.ajax({
+            url : url ,
+            type: "GET",
+            beforeSend: function(xhr){
+                            xhr.setRequestHeader('X-Requested-With','XMLHttpRequest');
+                        },
+        }).done(function (data) {
+             $(".transparentCover").hide();
+            $(".loading").hide();
+            $('#content_left').html(data);
+            location.hash = 'page='+page;
+            scrollToElement($('#content_left'));
+        }).fail(function () {
+           // alert('Server Busy');
+        });
+    }
+
+    </script>
 @stop
+
+

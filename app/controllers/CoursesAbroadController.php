@@ -28,7 +28,10 @@ class CoursesAbroadController extends \BaseController {
             $arr[] = $child_course['course_id'];
         }
 
+         $filter = Input::only('fees','specialization','exams');
+
           // $select_cities = Input::has('location')? Input::get('location') : [] ;
+
             $fees = Input::has('fees') ? Input::get('fees') : null ;
             $specialization = Input::has('specialization') ? Input::get('specialization') : null ;
             $exams = Input::has('exams') ? Input::get('exams') : null ;
@@ -82,6 +85,9 @@ class CoursesAbroadController extends \BaseController {
         }
 
         $courses = $query->paginate(Config::get('view.results_per_page'));
+
+        $courses->appends($filter)->links();            
+
 
         $view = View::make('coursesabroad.index', compact('courses', 'course_name', 'country'));
 

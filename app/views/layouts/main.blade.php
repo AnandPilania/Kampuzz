@@ -34,6 +34,11 @@
             <div class="container">
                     @if (Auth::check())
                         <i class="fa fa-user"></i><a href="{{ route('profile') }}"> {{ Auth::user()->name }}</a> |
+                            @if(Auth::user()->password != '')
+                                <a href="{{ route('change-password') }}">Change Password</a> |
+                            @else 
+                                  <a href="{{ route('change-password') }}">Create Password</a> |
+                            @endif
                         <a href="{{ route('logout') }}"> Log Out</a>
                         @else
                         <i class="fa fa-lock"></i> <a href="{{ route('login') }}">Login</a> | 

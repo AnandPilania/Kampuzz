@@ -32,6 +32,9 @@ Route::post('creatingaccount',array('before'=>'csrf','as'=>'signingUp','uses'=>'
 Route::get('fbsignup',array('as'=>'fbSignUp','uses'=>'LoginController@fbSignUp')) ;
 
 
-Route::get('profile',array('as'=>'profile','uses'=>'UserController@profile')) ;
+Route::get('profile',array('as'=>'profile','uses'=>'UserController@myProfile')) ;
+Route::get('save-profile',array('as'=>'save-profile','uses'=>'UserController@saveProfile')) ;
+Route::get('change-password',array('as'=>'change-password','uses'=>'UserController@changePassword')) ;
+Route::post('save-password',array('as'=>'save-password','uses'=>'UserController@savePassword')) ;
 Route::get('logout',array('as'=>'logout','uses'=>'LoginController@logout')) ;
 

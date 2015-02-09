@@ -5,8 +5,6 @@
 ?>
 
 
-
-
 @section('content')
 	
 	<div class="row">
@@ -52,20 +50,74 @@
 	  		<div class="socialLoginLinks clearfix"> 
 	  		 <button class="btn-social btn-fb btn-block" onClick="window.location = '{{ $fbloginurl }}' ; ">Sign in with Facebook</button>   
 	  		 <button class="btn-social btn-google" id="google-login-button">Sign in with Google</button> 
+	  		
+	
+			<script type="text/javascript">
+				  // (function() {
+				  //   var po = document.createElement('script');
+				  //   po.type = 'text/javascript'; po.async = true;
+				  //   po.src = 'https://plus.google.com/js/client:plusone.js';
+				  //   var s = document.getElementsByTagName('script')[0];
+				  //   s.parentNode.insertBefore(po, s);
+				  // })();
+			</script>
+			
+
 	  		 <!-- Add where you want your sign-in button to render -->
-			<!-- <div id="signinButton">
-			  <span class="g-signin"
-			    data-scope="https://www.googleapis.com/auth/plus.login"
-			    data-clientid="951301585811-7i42ojsjm75aqsqtapmk09335googbef.apps.googleusercontent.com"
-			    data-redirecturi="postmessage"
-			    data-accesstype="offline"
-			    data-cookiepolicy="single_host_origin"
-			    data-callback="signInCallback">
-			  </span>
+			<div id="gConnect">
+			    <!-- <button id="signinButton" class="btn-social btn-google btn-block"
+			        data-scope="https://www.googleapis.com/auth/plus.login"
+			        data-requestvisibleactions="http://schemas.google.com/AddActivity"
+			        data-clientId="{{ CLIENT_ID }}"
+			        data-accesstype="online"
+			        data-callback="onSignInCallback"
+			         
+			        data-theme="dark"
+			         data-cookiepolicy="single_host_origin"
+			        >
+			    </button> -->
 			</div>
-			<div id="result"></div> -->
+			<div id="results"></div>
 	  		</div>
 	  	</div>
   </div>
+ 
+<!-- Last part of BODY element in file index.html -->
+<script>
 
+function signInCallback(authResult) {
+  // if (authResult['code']) {
+
+  //   // Hide the sign-in button now that the user is authorized, for example:
+  //   $('#signinButton').attr('style', 'display: none');
+
+  //   // Send the code to the server
+  //   $.ajax({
+  //     type: 'POST',
+  //     url: 'plus.php?storeToken',
+  //     contentType: 'application/octet-stream; charset=utf-8',
+  //     success: function(result) {
+  //       // Handle or verify the server response if necessary.
+
+  //       // Prints the list of people that the user has allowed the app to know
+  //       // to the console.
+  //       console.log(result);
+  //       if (result['profile'] && result['people']){
+  //         $('#results').html('Hello ' + result['profile']['displayName'] + '. You successfully made a server side call to people.get and people.list');
+  //       } else {
+  //         $('#results').html('Failed to make a server-side call. Check your configuration and console.');
+  //       }
+  //     },
+  //     processData: false,
+  //     data: authResult['code']
+  //   });
+  // } else if (authResult['error']) {
+  //   // There was an error.
+  //   // Possible error codes:
+  //   //   "access_denied" - User denied access to your app
+  //   //   "immediate_failed" - Could not automatially log in the user
+  //   // console.log('There was an error: ' + authResult['error']);
+  // }
+}
+</script>
 @stop

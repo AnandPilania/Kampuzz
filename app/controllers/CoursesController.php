@@ -27,12 +27,12 @@ class CoursesController extends BaseController {
 
        
         $filter = Input::only('location','fees','specialization','exams');
-        // if(Input::has('submit_filters') && $filter['submit_filters'] == 'Filter') {
-            $select_cities = Input::has('location')? Input::get('location') : [] ;
-            $fees = Input::has('fees') ? $filter['fees'] : null ;
-            $specialization = Input::has('specialization') ? $filter['specialization'] : null ;
-            $exams = Input::has('exams') ? $filter['exams'] : null ;
-       // }
+        
+        $select_cities = Input::has('location')? Input::get('location') : [] ;
+        $fees = Input::has('fees') ? $filter['fees'] : null ;
+        $specialization = Input::has('specialization') ? Input::get('specialization') : null ;
+        $exams = Input::has('exams') ? $filter['exams'] : null ;
+    
 
         $query = Course::whereIn('courses.parent_course_id', $arr)
                             ->join('college_master','college_master.college_id','=','courses.college_id') ;
@@ -80,6 +80,7 @@ class CoursesController extends BaseController {
         $courseColleges  =   $query->groupBy('courses.college_id')
                             ->paginate(Config::get('view.results_per_page'));
 
+        $courseColleges->appends($filter)->links();            
         $i = 0;
         $collegeList = [] ;
         foreach ($courseColleges as $courseCollege)

@@ -146,6 +146,9 @@
   			
 
     		var form = $('#form_filter');
+
+    		location.hash = '' ;
+    		
     		var url = window.location.href ;  // the script where you handle the form input.
 
     		
